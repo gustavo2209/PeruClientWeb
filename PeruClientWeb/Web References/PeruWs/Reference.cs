@@ -32,6 +32,10 @@ namespace PeruClientWeb.PeruWs {
         
         private System.Threading.SendOrPostCallback departamentosOperationCompleted;
         
+        private System.Threading.SendOrPostCallback provinciasOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback distritosOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -74,6 +78,12 @@ namespace PeruClientWeb.PeruWs {
         public event departamentosCompletedEventHandler departamentosCompleted;
         
         /// <remarks/>
+        public event provinciasCompletedEventHandler provinciasCompleted;
+        
+        /// <remarks/>
+        public event distritosCompletedEventHandler distritosCompleted;
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/departamentos", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlArrayItemAttribute("ArrayOfAnyType")]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(NestingLevel=1)]
@@ -99,6 +109,68 @@ namespace PeruClientWeb.PeruWs {
             if ((this.departamentosCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.departamentosCompleted(this, new departamentosCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/provincias", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlArrayItemAttribute("ArrayOfAnyType")]
+        [return: System.Xml.Serialization.XmlArrayItemAttribute(NestingLevel=1)]
+        public object[][] provincias(int iddepartamento) {
+            object[] results = this.Invoke("provincias", new object[] {
+                        iddepartamento});
+            return ((object[][])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void provinciasAsync(int iddepartamento) {
+            this.provinciasAsync(iddepartamento, null);
+        }
+        
+        /// <remarks/>
+        public void provinciasAsync(int iddepartamento, object userState) {
+            if ((this.provinciasOperationCompleted == null)) {
+                this.provinciasOperationCompleted = new System.Threading.SendOrPostCallback(this.OnprovinciasOperationCompleted);
+            }
+            this.InvokeAsync("provincias", new object[] {
+                        iddepartamento}, this.provinciasOperationCompleted, userState);
+        }
+        
+        private void OnprovinciasOperationCompleted(object arg) {
+            if ((this.provinciasCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.provinciasCompleted(this, new provinciasCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/distritos", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlArrayItemAttribute("ArrayOfAnyType")]
+        [return: System.Xml.Serialization.XmlArrayItemAttribute(NestingLevel=1)]
+        public object[][] distritos(int idprovincia) {
+            object[] results = this.Invoke("distritos", new object[] {
+                        idprovincia});
+            return ((object[][])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void distritosAsync(int idprovincia) {
+            this.distritosAsync(idprovincia, null);
+        }
+        
+        /// <remarks/>
+        public void distritosAsync(int idprovincia, object userState) {
+            if ((this.distritosOperationCompleted == null)) {
+                this.distritosOperationCompleted = new System.Threading.SendOrPostCallback(this.OndistritosOperationCompleted);
+            }
+            this.InvokeAsync("distritos", new object[] {
+                        idprovincia}, this.distritosOperationCompleted, userState);
+        }
+        
+        private void OndistritosOperationCompleted(object arg) {
+            if ((this.distritosCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.distritosCompleted(this, new distritosCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -134,6 +206,58 @@ namespace PeruClientWeb.PeruWs {
         private object[] results;
         
         internal departamentosCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public object[][] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((object[][])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void provinciasCompletedEventHandler(object sender, provinciasCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class provinciasCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal provinciasCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public object[][] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((object[][])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void distritosCompletedEventHandler(object sender, distritosCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class distritosCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal distritosCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -29,6 +29,22 @@ namespace PeruClientWeb.Controllers
             return Json(depa, JsonRequestBehavior.AllowGet); //json
         }
 
+        [HttpGet]
+        public JsonResult Provincias(int id)
+        {
+            var depa = ws.provincias(id); // anytype
+
+            return Json(depa, JsonRequestBehavior.AllowGet); //json
+        }
+
+        [HttpGet]
+        public JsonResult Distritos(int id)
+        {
+            var depa = ws.distritos(id); // anytype
+
+            return Json(depa, JsonRequestBehavior.AllowGet); //json
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
